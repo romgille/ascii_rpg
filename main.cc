@@ -2,6 +2,7 @@
 #include <iostream>
 #include <random>
 #include "direction.hh"
+#include "individu.hh"
 
 int main() {
 	//std::random_device rd;
@@ -15,4 +16,13 @@ int main() {
 
 	//Directions test = Directions(distribution(mt));
 	//std::cout << "direction: " << test << std::endl;
+    Individu *i = new Individu();
+
+    std::cout << i->position->x << std::endl;
+    std::cout << i->position->y << std::endl;
+
+    i->move(1, 2);
+
+    std::cout << i->position->x << std::endl;
+    std::cout << i->position->y << std::endl;
 }

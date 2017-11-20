@@ -2,7 +2,7 @@
 
 class Objet
 {
-    protected:
+    public:
         char symbole;
         Position *position;
 };

@@ -8,8 +8,4 @@ class Individu : public ObjetMobile
             this->deplacement = 1;
             this->position = new Position(0, 0);
         }
-
-        void move(int alpha, int beta) {
-            this->position->move(alpha, beta);
-        }
 };
