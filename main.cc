@@ -4,7 +4,6 @@
 #include <fstream>
 
 #include "direction.hh"
-#include "objet.hh"
 #include "plateau.hh"
 #include "individu.hh"
 

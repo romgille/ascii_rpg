@@ -1,6 +1,9 @@
+#include "objet.hh"
+#include <string>
+
 class Plateau {
 	private:
-		int size;
+		unsigned int size;
 		Objet** tableau;
 
 		void createTableau() {
@@ -10,11 +13,10 @@ class Plateau {
 			}
 		}
 
-		
 	public:
 		// Plateau without data.txt
 		Plateau(int size = 8) {
-			this->size = size;		
+			this->size = size;
 			createTableau();
 		}
 		// Plateau with data.txt
@@ -27,11 +29,11 @@ class Plateau {
 			char ch;
 			std::fstream fin(filepath, std::fstream::in);
 			while (fin >> std::noskipws >> ch) {
-				
+
 			}
 		}
 		~Plateau();
-	
+
 		int getLengthFile(std::string filepath) {
 			std::ifstream file(filepath);
 			std::string str;
