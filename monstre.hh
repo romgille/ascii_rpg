@@ -2,5 +2,4 @@
 
 class Monstre : public ObjetMobile
 {
-
 };

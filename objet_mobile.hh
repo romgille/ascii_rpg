@@ -6,4 +6,8 @@ class ObjetMobile : public Objet
         int deplacement;
 
     public:
+        void move(int x, int y) {
+            this->position->move(x, y);
+        }
+
 };
