@@ -40,13 +40,13 @@ class Plateau {
 		}
 
 		void draw() {
-			std::string = "";
-			for (int i = 0; i < this.size; ++i) {
-				for (int j = 0; j < this.size; ++j) {
-					string += tableau[i][j].getSymbole();
+			std::string str = "";
+			for (int i = 0; i < this->size; ++i) {
+				for (int j = 0; j < this->size; ++j) {
+					str += tableau[i][j].symbole;
 				}
-				string += "\n";
+				str += "\n";
 			}
-			std::cout << string << std::endl;
+			std::cout << str << std::endl;
 		}
 };
