@@ -1,18 +1,18 @@
 #include <string>
 #include <iostream>
-#include "individu.hh"
+#include <random>
+#include "direction.hh"
 
 int main() {
-  std::string data[] = {
-    #include "data.txt"
-  };
-  for (auto s : data) std::cout << s << std::endl;
+	//std::random_device rd;
+	//std::mt19937 mt(rd());
+	//std::uniform_int_distribution<int> distribution(0, 3);
 
-  //Individu *i = new Individu();
-  //std::cout << "x : " << i->position->x << std::endl;
-  //std::cout << "y : " << i->position->y << std::endl;
+	std::string data[] = {
+		#include "data.txt"
+	};
+	//for (auto s : data) std::cout << s << std::endl;
 
-  //i->move(1, 2);
-  //std::cout << "x : " << i->position->x << std::endl;
-  //std::cout << "y : " << i->position->y << std::endl;
+	//Directions test = Directions(distribution(mt));
+	//std::cout << "direction: " << test << std::endl;
 }
