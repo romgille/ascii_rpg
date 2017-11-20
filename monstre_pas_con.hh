@@ -1,8 +1,8 @@
-class MonstrePasCon
+#include "monstre.hh"
+
+class MonstrePasCon : public Monstre
 {
     private:
-        char symbole;
-        int deplacement;
 
     public:
         MonstrePasCon() {

@@ -1,7 +1,8 @@
-class Potion
+#include "bonus.hh"
+
+class Potion : public Bonus
 {
     private:
-        char symbole;
 
     public:
         Potion() {

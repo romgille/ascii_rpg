@@ -1,7 +1,8 @@
-class Objectif
+#include "objet_immobile.hh"
+
+class Objectif : public ObjetImmobile
 {
     private:
-        char symbole;
 
     public:
         Objectif() {

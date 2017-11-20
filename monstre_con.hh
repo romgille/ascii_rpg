@@ -1,13 +1,12 @@
-class MonstreCon
+#include "monstre.hh"
+
+class MonstreCon : public Monstre
 {
     private:
-        char symbole;
-        int deplacement;
 
     public:
         MonstreCon() {
             this->symbole = 'm';
             this->deplacement = 1;
         }
-
 };

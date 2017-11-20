@@ -1,7 +1,8 @@
-class Thune
+#include "bonus.hh"
+
+class Thune : public Bonus
 {
     private:
-        char symbole;
 
     public:
         Thune() {

@@ -1,7 +1,8 @@
-class Rocher
+#include "obstacle.hh"
+
+class Rocher : public Obstacle
 {
     private:
-        char symbole;
 
     public:
         Rocher() {

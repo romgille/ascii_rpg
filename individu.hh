@@ -1,12 +1,15 @@
-class Individu
-{
-    private:
-        char symbole;
-        int deplacement;
+#include "objet_mobile.hh"
 
+class Individu : public ObjetMobile
+{
     public:
         Individu() {
             this->symbole = 'i';
             this->deplacement = 1;
+            this->position = new Position(0, 0);
+        }
+
+        void move(int alpha, int beta) {
+            this->position->move(alpha, beta);
         }
 };
