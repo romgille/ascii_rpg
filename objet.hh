@@ -6,6 +6,7 @@ class Objet {
 public:
     char symbole;
     Position *position;
+    char print();
 };
 
 #endif

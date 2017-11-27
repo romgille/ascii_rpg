@@ -20,8 +20,10 @@ int main() {
     //Directions test = Directions(distribution(mt));
     //std::cout << "direction: " << test << std::endl;
 
+    Plateau *plateau = new Plateau(data);
+    plateau->print();
 
-    Plateau *plateau = new Plateau();
-    plateau->draw();
+    std::cout << plateau->getSize() << std::endl;
+
 //    std::cout << "size: " << plateau->getLengthFile("data.txt") << std::endl;
 }

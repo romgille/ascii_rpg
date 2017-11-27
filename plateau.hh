@@ -2,26 +2,33 @@
 #define PLATEAU_H
 #include "objet.hh"
 #include <string>
+#include <vector>
+#include <memory>
 
 class Plateau {
 private:
-    unsigned int size;
-    Objet **tableau;
+  unsigned int size;
+  std::vector<std::unique_ptr<Objet>> objets;
 
-    void createTableau();
+  void createTableau();
 
 public:
-    // Plateau without data.txt
-    Plateau(int size = 8);
+  // Plateau without data.txt
+  Plateau(int size = 8);
 
-    // Plateau with data.txt
-    Plateau(std::string filepath);
+  Plateau(std::string data[]);
 
-    ~Plateau();
+  std::string print();
+  // Plateau with data.txt
+//  Plateau(std::string filepath);
 
-    int getLengthFile(std::string filepath);
+  ~Plateau();
 
-    void draw();
+  int getLengthFile(std::string filepath);
+
+  void draw();
+
+  unsigned int getSize();
 };
 
 #endif

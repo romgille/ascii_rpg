@@ -1,8 +1,9 @@
-#ifndef OBJET_MOBILE_H
-#define OBJET_MOBILE_H
+#ifndef OBJET_IMMOBILE_H
+#define OBJET_IMMOBILE_H
 #include "objet.hh"
 
-class ObjetImmobile : public Objet {
+class ObjetImmobile : public Objet
+{
 private:
 
 public:
