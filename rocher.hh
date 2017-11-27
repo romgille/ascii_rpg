@@ -1,11 +1,12 @@
+#ifndef ROCHER_H
+#define ROCHER_H
 #include "obstacle.hh"
 
-class Rocher : public Obstacle
-{
-    private:
+class Rocher : public Obstacle {
+private:
 
-    public:
-        Rocher() {
-            this->symbole = 'o';
-        }
+public:
+    Rocher();
 };
+
+#endif

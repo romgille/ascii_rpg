@@ -1,11 +1,12 @@
+#ifndef POTION_H
+#define POTION_H
 #include "bonus.hh"
 
-class Potion : public Bonus
-{
-    private:
+class Potion : public Bonus {
+private:
 
-    public:
-        Potion() {
-            this->symbole = '*';
-        }
+public:
+    Potion();
 };
+
+#endif

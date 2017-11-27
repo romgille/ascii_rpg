@@ -1,6 +1,6 @@
 enum Directions {
-	NORTH = 0,
-	WEST,
-	SOUTH,
-	EAST	
+    NORTH = 0,
+    WEST,
+    SOUTH,
+    EAST
 };

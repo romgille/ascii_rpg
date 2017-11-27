@@ -1,16 +1,14 @@
-class Position
-{
-    public:
-        int x;
-        int y;
+#ifndef POSITION_H
+#define POSITION_H
 
-        Position(int x, int y) {
-            this->x = x;
-            this->y = y;
-        }
+class Position {
+public:
+    int x;
+    int y;
 
-        void move(int alpha, int beta) {
-            this->x += alpha;
-            this->y += beta;
-        }
+    Position(int x, int y);
+
+    void move(int alpha, int beta);
 };
+
+#endif

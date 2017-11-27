@@ -1,12 +1,12 @@
+#ifndef MONSTRE_CON_H
+#define MONSTRE_CON_H
 #include "monstre.hh"
 
-class MonstreCon : public Monstre
-{
-    private:
+class MonstreCon : public Monstre {
+private:
 
-    public:
-        MonstreCon() {
-            this->symbole = 'm';
-            this->deplacement = 1;
-        }
+public:
+    MonstreCon();
 };
+
+#endif
