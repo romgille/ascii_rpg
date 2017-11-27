@@ -19,8 +19,8 @@
 
 Plateau::Plateau(std::string data[]){
   size_t size = data->size();
-  for (int i = 0; i < size; ++i){
-    for (int j = 0; j < size; ++j){
+  for (size_t i = 0; i < size; ++i){
+    for (size_t  j = 0; j < size; ++j){
       switch (data[i][j]) {
         case 'i':
           this->objets.push_back(std::make_unique<Individu>());
@@ -51,8 +51,8 @@ Plateau::Plateau(std::string data[]){
   this->size = size;
 }
 
-std::string Plateau::print(){
-  for (int i = 0; i < objets.size(); ++i){
+void Plateau::print(){
+  for (size_t i = 0; i < objets.size(); ++i){
     objets[i]->print();
   }
 }

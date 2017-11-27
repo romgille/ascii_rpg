@@ -18,7 +18,7 @@ public:
 
   Plateau(std::string data[]);
 
-  std::string print();
+  void print();
   // Plateau with data.txt
 //  Plateau(std::string filepath);
 
