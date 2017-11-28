@@ -8,11 +8,11 @@
 class Plateau {
 private:
   unsigned int size;
-  std::vector<std::unique_ptr<Objet>> objets;
 
   void createTableau();
 
 public:
+  std::vector<std::unique_ptr<Objet>> objets;
   // Plateau without data.txt
   Plateau(int size = 8);
 

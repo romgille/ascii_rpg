@@ -8,7 +8,11 @@ public:
 
     Position(int x, int y);
 
+    Position();
+
     void move(int alpha, int beta);
+
+    void print();
 };
 
 #endif

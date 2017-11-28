@@ -7,6 +7,7 @@ private:
 
 public:
     MonstrePasCon();
+    MonstrePasCon(Position p);
 };
 
 #endif

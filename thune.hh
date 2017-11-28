@@ -7,6 +7,7 @@ private:
 
 public:
     Thune();
+    Thune(Position p);
 };
 
 #endif

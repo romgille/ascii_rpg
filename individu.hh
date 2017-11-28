@@ -5,6 +5,7 @@
 class Individu : public ObjetMobile {
 public:
     Individu();
+    Individu(Position p);
 };
 
 #endif

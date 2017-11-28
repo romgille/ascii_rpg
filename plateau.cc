@@ -23,25 +23,25 @@ Plateau::Plateau(std::string data[]){
     for (size_t  j = 0; j < size; ++j){
       switch (data[i][j]) {
         case 'i':
-        this->objets.push_back(std::make_unique<Individu>());
+        this->objets.push_back(std::make_unique<Individu>(Position(i, j)));
         break;
         case 'T':
-        this->objets.push_back(std::make_unique<Objectif>());
+        this->objets.push_back(std::make_unique<Objectif>(Position(i, j)));
         break;
         case 'm':
-        this->objets.push_back(std::make_unique<MonstreCon>());
+        this->objets.push_back(std::make_unique<MonstreCon>(Position(i, j)));
         break;
         case 'o':
-        this->objets.push_back(std::make_unique<Rocher>());
+        this->objets.push_back(std::make_unique<Rocher>(Position(i, j)));
         break;
         case '*':
-        this->objets.push_back(std::make_unique<Potion>());
+        this->objets.push_back(std::make_unique<Potion>(Position(i, j)));
         break;
         case 'M':
-        this->objets.push_back(std::make_unique<MonstrePasCon>());
+        this->objets.push_back(std::make_unique<MonstrePasCon>(Position(i, j)));
         break;
         case '$':
-        this->objets.push_back(std::make_unique<Thune>());
+        this->objets.push_back(std::make_unique<Thune>(Position(i, j)));
         break;
         default:
         this->objets.push_back(nullptr);
@@ -63,6 +63,13 @@ void Plateau::print(){
       std::cout << "\"," << std::endl;
       std::cout << "\"";
     }
+  }
+  std::cout << std::endl;
+  for (size_t i = 0; i < objets.size(); ++i){
+      if(objets[i]){
+        std::cout << objets[i]->symbole << " : ";
+        objets[i]->position.print();
+      }
   }
 }
 

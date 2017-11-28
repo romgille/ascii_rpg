@@ -23,6 +23,20 @@ int main() {
     Plateau *plateau = new Plateau(data);
     plateau->print();
 
+    for (size_t i = 0; i < plateau->objets.size(); ++i){
+      if(!plateau->objets[i]){
+        continue;
+      }
+      
+      if (plateau->objets[i]->symbole == 'i'){
+        auto ptr = static_cast<Individu*>(plateau->objets[i].get());
+        ptr->move();
+      }
+    }
+
+    plateau->print();
+
+
 //    std::cout << plateau->getSize() << std::endl;
 
 //    std::cout << "size: " << plateau->getLengthFile("data.txt") << std::endl;

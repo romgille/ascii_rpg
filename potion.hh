@@ -7,6 +7,7 @@ private:
 
 public:
     Potion();
+    Potion(Position p);
 };
 
 #endif

@@ -8,6 +8,7 @@ private:
 
 public:
     Objectif();
+    Objectif(Position p);
 };
 
 #endif

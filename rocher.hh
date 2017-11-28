@@ -7,6 +7,7 @@ private:
 
 public:
     Rocher();
+    Rocher(Position p);
 };
 
 #endif

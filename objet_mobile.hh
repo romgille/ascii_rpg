@@ -7,7 +7,7 @@ protected:
     int deplacement;
 
 public:
-    void move(int x, int y);
+    void move();
 
 };
 

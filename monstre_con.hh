@@ -7,6 +7,7 @@ private:
 
 public:
     MonstreCon();
+    MonstreCon(Position p);
 };
 
 #endif
