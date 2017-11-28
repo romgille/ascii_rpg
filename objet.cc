@@ -2,5 +2,5 @@
 #include <iostream>
 
 void Objet::print() {
-    std::cout << this->symbole << std::endl;
+    std::cout << this->symbole;
 }

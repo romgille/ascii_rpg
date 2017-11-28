@@ -52,51 +52,56 @@ Plateau::Plateau(std::string data[]){
 }
 
 void Plateau::print(){
+  std::cout << "\"";
   for (size_t i = 0; i < objets.size(); ++i){
     if (objets[i]){
       objets[i]->print();
     } else {
-      std::cout << "null" << std::endl;
+      std::cout << " ";
+    }
+    if (i != 0 && i % 8 == 0) {
+      std::cout << "\"," << std::endl;
+      std::cout << "\"";
     }
   }
 }
 
-  Plateau::Plateau(int size) {
-    this->size = size;
-    //    createTableau();
-  }
+Plateau::Plateau(int size) {
+  this->size = size;
+  //    createTableau();
+}
 
-  unsigned int Plateau::getSize() {
-    return this->size;
-  }
+unsigned int Plateau::getSize() {
+  return this->size;
+}
 
-  //Plateau::Plateau(std::string filepath) {
-  //  this->size = getLengthFile(filepath);
-  //  createTableau();
-  //
-  //  unsigned int i = 0;
-  //  unsigned int j = 0;
-  //  char ch;
-  //  std::fstream fin(filepath, std::fstream::in);
-  //  while (fin >> std::noskipws >> ch) {
-  //
-  //  }
-  //}
+//Plateau::Plateau(std::string filepath) {
+//  this->size = getLengthFile(filepath);
+//  createTableau();
+//
+//  unsigned int i = 0;
+//  unsigned int j = 0;
+//  char ch;
+//  std::fstream fin(filepath, std::fstream::in);
+//  while (fin >> std::noskipws >> ch) {
+//
+//  }
+//}
 
-  int Plateau::getLengthFile(std::string filepath) {
-    std::ifstream file(filepath);
-    std::string str;
-    std::getline(file, str);
-    return str.length();
-  }
+int Plateau::getLengthFile(std::string filepath) {
+  std::ifstream file(filepath);
+  std::string str;
+  std::getline(file, str);
+  return str.length();
+}
 
-  //void Plateau::draw() {
-  //    std::string str = "";
-  //    for (int i = 0; i < this->size; ++i) {
-  //        for (int j = 0; j < this->size; ++j) {
-  //            str += tableau[i][j].symbole;
-  //        }
-  //        str += "\n";
-  //    }
-  //    std::cout << str << std::endl;
-  //}
+//void Plateau::draw() {
+//    std::string str = "";
+//    for (int i = 0; i < this->size; ++i) {
+//        for (int j = 0; j < this->size; ++j) {
+//            str += tableau[i][j].symbole;
+//        }
+//        str += "\n";
+//    }
+//    std::cout << str << std::endl;
+//}

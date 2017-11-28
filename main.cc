@@ -23,7 +23,7 @@ int main() {
     Plateau *plateau = new Plateau(data);
     plateau->print();
 
-    std::cout << plateau->getSize() << std::endl;
+//    std::cout << plateau->getSize() << std::endl;
 
 //    std::cout << "size: " << plateau->getLengthFile("data.txt") << std::endl;
 }
