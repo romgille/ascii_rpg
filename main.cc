@@ -27,7 +27,7 @@ int main() {
       if(!plateau->objets[i]){
         continue;
       }
-      
+
       if (plateau->objets[i]->symbole == 'i'){
         auto ptr = static_cast<Individu*>(plateau->objets[i].get());
         ptr->move();

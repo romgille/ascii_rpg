@@ -2,8 +2,7 @@
 #include <experimental/random>
 
 void ObjetMobile::move() {
-  this->position.move(
-    std::experimental::randint(0, ObjetMobile::deplacement),
-    std::experimental::randint(0, ObjetMobile::deplacement)
-  );
+  int x = std::experimental::randint(0, ObjetMobile::deplacement);
+  int y = x == 0 ? ObjetMobile::deplacement : 0;
+  this->position.move(x, y);
 }

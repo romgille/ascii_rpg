@@ -7,7 +7,7 @@
 
 class Plateau {
 private:
-  unsigned int size;
+  unsigned int size = 8;
 
   void createTableau();
 

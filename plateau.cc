@@ -18,7 +18,6 @@
 //}
 
 Plateau::Plateau(std::string data[]){
-  size_t size = data->size();
   for (size_t i = 0; i < size; ++i){
     for (size_t  j = 0; j < size; ++j){
       switch (data[i][j]) {
@@ -52,24 +51,47 @@ Plateau::Plateau(std::string data[]){
 }
 
 void Plateau::print(){
-  std::cout << "\"";
-  for (size_t i = 0; i < objets.size(); ++i){
-    if (objets[i]){
-      objets[i]->print();
-    } else {
-      std::cout << " ";
-    }
-    if (i != 0 && i % 8 == 0) {
-      std::cout << "\"," << std::endl;
-      std::cout << "\"";
+  //std::cout << "\"";
+  //for (size_t i = 0; i < objets.size(); ++i){
+  //  if (objets[i]){
+  //    objets[i]->print();
+  //  } else {
+  //    std::cout << " ";
+  //  }
+  //  if (i != 0 && i % 8 == 0) {
+  //    std::cout << "\"," << std::endl;
+  //    std::cout << "\"";
+  //  }
+  //}
+  //std::cout << std::endl;
+
+  char array[8][8];
+  for(int i = 0; i < 8; ++i){
+    for(int j = 0; j < 8; ++j){
+      array[i][j] = ' ';
     }
   }
-  std::cout << std::endl;
   for (size_t i = 0; i < objets.size(); ++i){
-      if(objets[i]){
-        std::cout << objets[i]->symbole << " : ";
-        objets[i]->position.print();
-      }
+    if (objets[i]){
+      array[objets[i]->position.x][objets[i]->position.y] = objets[i]->symbole;
+    }
+  }
+
+  std::cout << "\"";
+  for(int i = 0; i < 8; ++i){
+    for(int j = 0; j < 8; ++j){
+      std::cout << array[i][j];
+    }
+      std::cout << "\"," << std::endl;
+      std::cout << "\"";
+  }
+  std::cout << std::endl;
+
+  for (size_t i = 0; i < objets.size(); ++i){
+    if(objets[i]){
+      std::cout << objets[i]->symbole << " : ";
+      objets[i]->position.print();
+    }
   }
 }
 
