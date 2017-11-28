@@ -7,6 +7,7 @@
 #include "direction.hh"
 #include "plateau.hh"
 #include "individu.hh"
+#include "monstre_con.hh"
 
 int main() {
     //std::random_device rd;
@@ -48,6 +49,10 @@ int main() {
       if (plateau->objets[i]->symbole == 'i'){
         auto ptr = static_cast<Individu*>(plateau->objets[i].get());
         ptr->move(positions['T']);
+      }
+      if (plateau->objets[i]->symbole == 'm'){
+        auto ptr = static_cast<MonstreCon*>(plateau->objets[i].get());
+        ptr->move(positions['i']);
       }
     }
 

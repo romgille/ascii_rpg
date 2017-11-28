@@ -7,7 +7,7 @@ public:
     Individu();
     Individu(Position p);
 
-    void move(Position target);
+//    void move(Position target);
 };
 
 #endif

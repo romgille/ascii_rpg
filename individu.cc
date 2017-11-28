@@ -12,14 +12,14 @@ Individu::Individu(Position p) {
   this->position = p;
 }
 
-void Individu::move(Position target){
-  if (target.y < this->position.y) {
-    ObjetMobile::move(0, -this->deplacement);
-  } else if (target.y > this->position.y) {
-    ObjetMobile::move(0, this->deplacement);
-  } else if (target.x < this->position.x){
-    ObjetMobile::move(-this->deplacement, 0);
-  } else if (target.x > this->position.x) {
-    ObjetMobile::move(this->deplacement, 0);
-  }
-}
+//void Individu::move(Position target){
+//  if (target.y < this->position.y) {
+//    ObjetMobile::move(0, -this->deplacement);
+//  } else if (target.y > this->position.y) {
+//    ObjetMobile::move(0, this->deplacement);
+//  }
+//  if (target.x < this->position.x){
+//    ObjetMobile::move(-this->deplacement, 0);
+//  } else if (target.x > this->position.x) {
+//    ObjetMobile::move(this->deplacement, 0);
+//}
