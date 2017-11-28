@@ -23,28 +23,28 @@ Plateau::Plateau(std::string data[]){
     for (size_t  j = 0; j < size; ++j){
       switch (data[i][j]) {
         case 'i':
-          this->objets.push_back(std::make_unique<Individu>());
-          break;
+        this->objets.push_back(std::make_unique<Individu>());
+        break;
         case 'T':
-          this->objets.push_back(std::make_unique<Objectif>());
-          break;
+        this->objets.push_back(std::make_unique<Objectif>());
+        break;
         case 'm':
-          this->objets.push_back(std::make_unique<MonstreCon>());
-          break;
+        this->objets.push_back(std::make_unique<MonstreCon>());
+        break;
         case 'o':
-          this->objets.push_back(std::make_unique<Rocher>());
-          break;
+        this->objets.push_back(std::make_unique<Rocher>());
+        break;
         case '*':
-          this->objets.push_back(std::make_unique<Potion>());
-          break;
+        this->objets.push_back(std::make_unique<Potion>());
+        break;
         case 'M':
-          this->objets.push_back(std::make_unique<MonstrePasCon>());
-          break;
+        this->objets.push_back(std::make_unique<MonstrePasCon>());
+        break;
         case '$':
-          this->objets.push_back(std::make_unique<Thune>());
-          break;
+        this->objets.push_back(std::make_unique<Thune>());
+        break;
         default:
-          this->objets.push_back(nullptr);
+        this->objets.push_back(nullptr);
       }
     }
   }
@@ -53,46 +53,50 @@ Plateau::Plateau(std::string data[]){
 
 void Plateau::print(){
   for (size_t i = 0; i < objets.size(); ++i){
-    objets[i]->print();
+    if (objets[i]){
+      objets[i]->print();
+    } else {
+      std::cout << "null" << std::endl;
+    }
   }
 }
 
-Plateau::Plateau(int size) {
-  this->size = size;
-  //    createTableau();
-}
+  Plateau::Plateau(int size) {
+    this->size = size;
+    //    createTableau();
+  }
 
-unsigned int Plateau::getSize() {
-  return this->size;
-}
+  unsigned int Plateau::getSize() {
+    return this->size;
+  }
 
-//Plateau::Plateau(std::string filepath) {
-//  this->size = getLengthFile(filepath);
-//  createTableau();
-//
-//  unsigned int i = 0;
-//  unsigned int j = 0;
-//  char ch;
-//  std::fstream fin(filepath, std::fstream::in);
-//  while (fin >> std::noskipws >> ch) {
-//
-//  }
-//}
+  //Plateau::Plateau(std::string filepath) {
+  //  this->size = getLengthFile(filepath);
+  //  createTableau();
+  //
+  //  unsigned int i = 0;
+  //  unsigned int j = 0;
+  //  char ch;
+  //  std::fstream fin(filepath, std::fstream::in);
+  //  while (fin >> std::noskipws >> ch) {
+  //
+  //  }
+  //}
 
-int Plateau::getLengthFile(std::string filepath) {
-  std::ifstream file(filepath);
-  std::string str;
-  std::getline(file, str);
-  return str.length();
-}
+  int Plateau::getLengthFile(std::string filepath) {
+    std::ifstream file(filepath);
+    std::string str;
+    std::getline(file, str);
+    return str.length();
+  }
 
-//void Plateau::draw() {
-//    std::string str = "";
-//    for (int i = 0; i < this->size; ++i) {
-//        for (int j = 0; j < this->size; ++j) {
-//            str += tableau[i][j].symbole;
-//        }
-//        str += "\n";
-//    }
-//    std::cout << str << std::endl;
-//}
+  //void Plateau::draw() {
+  //    std::string str = "";
+  //    for (int i = 0; i < this->size; ++i) {
+  //        for (int j = 0; j < this->size; ++j) {
+  //            str += tableau[i][j].symbole;
+  //        }
+  //        str += "\n";
+  //    }
+  //    std::cout << str << std::endl;
+  //}
