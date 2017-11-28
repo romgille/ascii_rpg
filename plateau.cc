@@ -51,20 +51,6 @@ Plateau::Plateau(std::string data[]){
 }
 
 void Plateau::print(){
-  //std::cout << "\"";
-  //for (size_t i = 0; i < objets.size(); ++i){
-  //  if (objets[i]){
-  //    objets[i]->print();
-  //  } else {
-  //    std::cout << " ";
-  //  }
-  //  if (i != 0 && i % 8 == 0) {
-  //    std::cout << "\"," << std::endl;
-  //    std::cout << "\"";
-  //  }
-  //}
-  //std::cout << std::endl;
-
   char array[8][8];
   for(int i = 0; i < 8; ++i){
     for(int j = 0; j < 8; ++j){

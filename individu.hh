@@ -6,6 +6,8 @@ class Individu : public ObjetMobile {
 public:
     Individu();
     Individu(Position p);
+
+    void move(Position target);
 };
 
 #endif
