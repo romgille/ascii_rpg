@@ -1,65 +1,47 @@
-#include <string>
-#include <iostream>
-#include <random>
-#include <fstream>
-#include <map>
-
-#include "direction.hh"
-#include "plateau.hh"
-#include "individu.hh"
-#include "monstre_con.hh"
+#include "main.hh"
 
 int main() {
-    //std::random_device rd;
-    //std::mt19937 mt(rd());
-    //std::uniform_int_distribution<int> distribution(0, 3);
+  std::string data[] = {
+    #include "data.txt"
+  };
 
-    std::string data[] = {
-#include "data.txt"
-    };
-    //for (auto s : data) std::cout << s << std::endl;
+  auto grid = std::make_unique<Grid>(data);
 
-    //Directions test = Directions(distribution(mt));
-    //std::cout << "direction: " << test << std::endl;
+  while (true) {
 
-    Plateau *plateau = new Plateau(data);
-    plateau->print();
-
-    typedef std::map<char, Position> SymbPosMap;
-    typedef std::pair<char, Position> SymbPosPair;
-
-    SymbPosMap positions;
-
-    for (size_t i = 0; i < plateau->objets.size(); ++i){
-      if (plateau->objets[i]) {
-        positions.insert(
-          SymbPosPair(
-            plateau->objets[i]->symbole,
-            Position(plateau->objets[i]->position.x, plateau->objets[i]->position.y)
-          )
-        );
-      }
+    if (grid->monstersWin()) {
+      std::cout << "Monsters wins" << std::endl;
+      return 0;
     }
 
-    for (size_t i = 0; i < plateau->objets.size(); ++i){
-      if(!plateau->objets[i]){
-        continue;
-      }
+    moveFellow(grid);
 
-      if (plateau->objets[i]->symbole == 'i'){
-        auto ptr = static_cast<Individu*>(plateau->objets[i].get());
-        ptr->move(positions['T']);
-      }
-      if (plateau->objets[i]->symbole == 'm'){
-        auto ptr = static_cast<MonstreCon*>(plateau->objets[i].get());
-        ptr->move(positions['i']);
-      }
-    }
+    //if (grid->fellow->win()) {
+    //  std::cout << "Fellow wins" << std::endl;
+    //  return 1;
+    //}
+//
+    //moveMonsters(grid);
+//
+    //grid->displayMap();
 
-    plateau->print();
+  }
+}
 
+void moveFellow(std::unique_ptr<Grid> const &grid) {
+  //auto fellow = static_cast<std::unique_ptr<MovableObject>>(grid->fellow.release());
 
-//    std::cout << plateau->getSize() << std::endl;
+  if (grid->hasPotion){
+    auto availableMovesV = grid->availableMoves(*grid->fellow, '*');
+  }
 
-//    std::cout << "size: " << plateau->getLengthFile("data.txt") << std::endl;
+  auto availableMovesV = grid->availableMoves(*grid->fellow, 'T');
+  //grid->fellow->move(availableMovesV);
+//
+  //grid->update();
+}
+
+void moveMonsters(std::unique_ptr<Grid> const &grid) {
+  grid->moveMonsters();
+  grid->update();
 }
