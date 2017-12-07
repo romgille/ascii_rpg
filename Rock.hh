@@ -5,7 +5,6 @@
 
 class Rock : public ImmobileObject {
 public:
-  char symbole = 'o';
   Rock(Position p);
   ~Rock() = default;
 };

@@ -12,7 +12,6 @@ public:
   Target(Position p);
   Target();
   ~Target() = default;
-  char symbole = 'T';
 };
 
 #endif /* end of include guard: TARGET_HH */

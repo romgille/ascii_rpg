@@ -2,4 +2,5 @@
 
 Potion::Potion(Position p) {
   position = Position(p.getX(), p.getY());
+  symbole = '*';
 }

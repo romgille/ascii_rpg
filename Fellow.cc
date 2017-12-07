@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "Fellow.hh"
 
 bool Fellow::win() {
@@ -6,6 +8,8 @@ bool Fellow::win() {
 
 Fellow::Fellow(Position p) {
   position = Position(p.getX(), p.getY());
+  symbole = 'i';
+  deplacement = 1;
 }
 
 void Fellow::move(std::vector<bool> availableMoves) {
@@ -17,5 +21,7 @@ void Fellow::move(std::vector<bool> availableMoves) {
     position = position +  Position(-deplacement, 0);
   } else if (availableMoves[3] && targetPosition.getX() > position.getX()) {
     position = position +  Position(deplacement, 0);
+  } else {
+    std::cout << "can't move" << std::endl;
   }
 }

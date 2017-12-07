@@ -7,7 +7,7 @@ class ImmobileObject {
 
 public:
   Position position;
-  char symbole;
+  char symbole = ' ';
 
   ~ImmobileObject() = default;
 };

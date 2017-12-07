@@ -5,7 +5,6 @@
 
 class Money : public ImmobileObject {
 public:
-  char symbole = '$';
   Money(Position p);
   ~Money() = default;
 };

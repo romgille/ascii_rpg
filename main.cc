@@ -7,8 +7,13 @@ int main() {
 
   auto grid = std::make_unique<Grid>(data);
 
-  while (true) {
+  //while (true) {
+  for (int i = 0; i < 5; ++i) {
 
+    auto target = std::make_unique<Target>(Position(1, 2));
+    std::cout << "plop " << target->symbole << std::endl;
+    //system("clear");
+    //std::cout << "Round " << i + 1 << std::endl;
     if (grid->monstersWin()) {
       std::cout << "Monsters wins" << std::endl;
       return 0;
@@ -16,32 +21,32 @@ int main() {
 
     moveFellow(grid);
 
-    //if (grid->fellow->win()) {
-    //  std::cout << "Fellow wins" << std::endl;
-    //  return 1;
-    //}
-//
-    //moveMonsters(grid);
-//
-    //grid->displayMap();
+    if (grid->fellow->win()) {
+      std::cout << "Fellow wins" << std::endl;
+      return 1;
+    }
 
+    //moveMonsters(grid);
+
+    grid->displayMap();
+    //std::cin.ignore();
   }
 }
 
 void moveFellow(std::unique_ptr<Grid> const &grid) {
-  //auto fellow = static_cast<std::unique_ptr<MovableObject>>(grid->fellow.release());
-
+  std::vector<bool> availableMovesV;
   if (grid->hasPotion){
-    auto availableMovesV = grid->availableMoves(*grid->fellow, '*');
+    availableMovesV = grid->availableMoves(*grid->fellow, '*');
+  } else {
+    availableMovesV = grid->availableMoves(*grid->fellow, 'T');
   }
 
-  auto availableMovesV = grid->availableMoves(*grid->fellow, 'T');
-  //grid->fellow->move(availableMovesV);
-//
-  //grid->update();
+  grid->fellow->move(availableMovesV);
+
+  grid->update();
 }
 
 void moveMonsters(std::unique_ptr<Grid> const &grid) {
   grid->moveMonsters();
-  grid->update();
+  //grid->update();
 }

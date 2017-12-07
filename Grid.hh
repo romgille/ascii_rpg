@@ -36,8 +36,7 @@ public:
 
   void moveMonsters();
 
-  template<class T>
-  std::vector<bool> availableMoves(T& movable, char target);
+  std::vector<bool> availableMoves(MovableObject& movable, char target);
 
   void update();
 };

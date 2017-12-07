@@ -5,7 +5,6 @@
 
 class Potion : public ImmobileObject {
 public:
-  char symbole = '*';
   Potion(Position p);
   ~Potion() = default;
 };

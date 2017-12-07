@@ -65,58 +65,54 @@ void Grid::displayMap() {
   std::cout << std::endl;
 }
 
-template<class T>
-std::vector<bool> Grid::availableMoves(T& movable, char target) {
+std::vector<bool> Grid::availableMoves(MovableObject& movable, char target) {
   bool north = true;
   bool south = true;
   bool east = true;
   bool west = true;
   bool northE = true;
   bool southE = true;
-  bool southW = true;
   bool northW = true;
+  bool southW = true;
 
-  //std::cout << map[movable.position.getX()][movable.position.getY()];
-//  std::cout << movable.deplacement;
-  std::cout << typeid(movable).name() << std::endl;
   // TODO faire avec std::find vector avec vector canWalk et cannotWalk
-  //if (map[movable.position.getX() - movable.deplacement][movable.position.getY()] != ' ' ||
-  //map[movable.position.getX() - movable.deplacement][movable.position.getY()] != target ||
-  //map[movable.position.getX() - movable.deplacement][movable.position.getY()] != '$') {
-  //  north = false;
-  //}
-  //if (map[movable.position.getX() + movable.deplacement][movable.position.getY()] != ' ' ||
-  //map[movable.position.getX() + movable.deplacement][movable.position.getY()] != target ||
-  //map[movable.position.getX() + movable.deplacement][movable.position.getY()] != '$') {
-  //  south = false;
-  //}
-  //if (map[movable.position.getX()][movable.position.getY() - movable.deplacement] != ' ' ||
-  //map[movable.position.getX()][movable.position.getY() - movable.deplacement] != target ||
-  //map[movable.position.getX()][movable.position.getY() - movable.deplacement] != '$') {
-  //  west = false;
-  //}
-  //if (map[movable.position.getX()][movable.position.getY() + movable.deplacement] != ' ' ||
-  //map[movable.position.getX()][movable.position.getY() + movable.deplacement] != target ||
-  //map[movable.position.getX()][movable.position.getY() + movable.deplacement] != '$') {
-  //  east = false;
-  //}
-  //if (map[movable.position.getX() - movable.deplacement][movable.position.getY() - movable.deplacement] != ' ' ||
-  //map[movable.position.getX() - movable.deplacement][movable.position.getY() - movable.deplacement] != target) {
-  //  northW = false;
-  //}
-  //if (map[movable.position.getX() + movable.deplacement][movable.position.getY() - movable.deplacement] != ' ' ||
-  //map[movable.position.getX() + movable.deplacement][movable.position.getY() - movable.deplacement] != target) {
-  //  southW = false;
-  //}
-  //if (map[movable.position.getX() + movable.deplacement][movable.position.getY() + movable.deplacement] != ' ' ||
-  //map[movable.position.getX() + movable.deplacement][movable.position.getY() + movable.deplacement] != target) {
-  //  southE = false;
-  //}
-  //if (map[movable.position.getX() - movable.deplacement][movable.position.getY() + movable.deplacement] != ' ' ||
-  //map[movable.position.getX() - movable.deplacement][movable.position.getY() + movable.deplacement] != target) {
-  //  northE = false;
-  //}
-//
+  if (map[movable.position.getX() - movable.deplacement][movable.position.getY()] != ' ' ||
+  map[movable.position.getX() - movable.deplacement][movable.position.getY()] != target ||
+  map[movable.position.getX() - movable.deplacement][movable.position.getY()] != '$') {
+    north = false;
+  }
+  if (map[movable.position.getX() + movable.deplacement][movable.position.getY()] != ' ' ||
+  map[movable.position.getX() + movable.deplacement][movable.position.getY()] != target ||
+  map[movable.position.getX() + movable.deplacement][movable.position.getY()] != '$') {
+    south = false;
+  }
+  if (map[movable.position.getX()][movable.position.getY() - movable.deplacement] != ' ' ||
+  map[movable.position.getX()][movable.position.getY() - movable.deplacement] != target ||
+  map[movable.position.getX()][movable.position.getY() - movable.deplacement] != '$') {
+    west = false;
+  }
+  if (map[movable.position.getX()][movable.position.getY() + movable.deplacement] != ' ' ||
+  map[movable.position.getX()][movable.position.getY() + movable.deplacement] != target ||
+  map[movable.position.getX()][movable.position.getY() + movable.deplacement] != '$') {
+    east = false;
+  }
+  if (map[movable.position.getX() - movable.deplacement][movable.position.getY() - movable.deplacement] != ' ' ||
+  map[movable.position.getX() - movable.deplacement][movable.position.getY() - movable.deplacement] != target) {
+    northW = false;
+  }
+  if (map[movable.position.getX() + movable.deplacement][movable.position.getY() - movable.deplacement] != ' ' ||
+  map[movable.position.getX() + movable.deplacement][movable.position.getY() - movable.deplacement] != target) {
+    southW = false;
+  }
+  if (map[movable.position.getX() + movable.deplacement][movable.position.getY() + movable.deplacement] != ' ' ||
+  map[movable.position.getX() + movable.deplacement][movable.position.getY() + movable.deplacement] != target) {
+    southE = false;
+  }
+  if (map[movable.position.getX() - movable.deplacement][movable.position.getY() + movable.deplacement] != ' ' ||
+  map[movable.position.getX() - movable.deplacement][movable.position.getY() + movable.deplacement] != target) {
+    northE = false;
+  }
+
   std::vector<bool> availablesMoves = {north, south, east, west, northW, southW, southE, northE};
   return availablesMoves;
 }
@@ -126,11 +122,14 @@ void Grid::update() {
   int potionIndex;
   Position moneyPosition;
 
+  // remove all elements from map
   for(size_t i = 0; i < map.size(); ++i){
     for(size_t  j = 0; j < map.size(); ++j){
       map[i][j] = ' ';
     }
   }
+
+  // add immobileObjects to map
   for (size_t i = 0; i < immobileObjects.size(); ++i){
     map[immobileObjects[i]->position.getX()][immobileObjects[i]->position.getY()] = immobileObjects[i]->symbole;
     if (immobileObjects[i]->symbole == '*') {
@@ -141,11 +140,13 @@ void Grid::update() {
       moneyPosition = Position(immobileObjects[i]->position.getX(), immobileObjects[i]->position.getY());
     }
   }
+  // add monsters to map
   for (size_t i = 0; i < monsters.size(); ++i){
     map[monsters[i]->position.getX()][monsters[i]->position.getY()] = monsters[i]->symbole;
   }
+  // add fellow to map
   map[fellow->position.getX()][fellow->position.getY()] = fellow->symbole;
-
+  // special cases for fellow
   if (Position(fellow->position.getX(), fellow->position.getY()) == potionPosition) {
     fellow->deplacement = 2;
     immobileObjects.erase(immobileObjects.begin() + potionIndex);
@@ -158,8 +159,7 @@ void Grid::update() {
 
 void Grid::moveMonsters() {
   for(size_t i = 0; i < monsters.size(); ++i){
-    auto monster = static_cast<std::unique_ptr<MovableObject>>(monsters[i].get());
-    std::vector<bool> availableMovesV = availableMoves(*monster, 'i');
+    std::vector<bool> availableMovesV = availableMoves(*monsters[i], 'i');
     monsters[i]->move(availableMovesV);
   }
 }

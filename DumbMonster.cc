@@ -2,6 +2,8 @@
 
 DumbMonster::DumbMonster(Position p) {
   position = Position(p.getX(), p.getY());
+  symbole = 'm';
+  deplacement = 1;
 }
 
 void DumbMonster::move(std::vector<bool> availableMoves) {

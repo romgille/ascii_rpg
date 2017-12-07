@@ -2,6 +2,8 @@
 
 NotSoDumbMonster::NotSoDumbMonster(Position p) {
   position = Position(p.getX(), p.getY());
+  symbole = 'M';
+  deplacement = 1;
 }
 
 void NotSoDumbMonster::move(std::vector<bool> availableMoves) {

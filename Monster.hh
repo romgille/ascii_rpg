@@ -8,14 +8,9 @@
 
 class Monster : public MovableObject {
 public:
-  Position position;
-  char symbole;
   bool win();
   virtual void move(std::vector<bool> availableMoves) = 0;
   ~Monster() = default;
-
-protected:
-  Position targetPosition;
 };
 
 #endif
