@@ -21,9 +21,10 @@ class Grid {
 public:
   std::vector<std::unique_ptr<Monster>> monsters;
   std::vector<std::unique_ptr<ImmobileObject>> immobileObjects;
-  std::unique_ptr<Fellow> fellow;
+  std::vector<std::unique_ptr<Fellow>> fellows;
   std::vector<std::vector<char>> map;
 
+  size_t size = 8;
   bool hasPotion = false;
   bool hasMoney = false;
 
@@ -36,7 +37,11 @@ public:
 
   void moveMonsters();
 
-  std::vector<bool> availableMoves(MovableObject& movable, char target);
+  void moveFellows();
+
+  bool fellowsWin();
+
+  std::vector<bool> availableMoves(MovableObject& movable);
 
   void update();
 };

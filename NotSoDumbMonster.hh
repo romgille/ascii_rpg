@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "Monster.hh"
+#include "Position.hh"
 
 class NotSoDumbMonster : public Monster {
 public:

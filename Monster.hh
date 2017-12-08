@@ -11,6 +11,7 @@ public:
   bool win();
   virtual void move(std::vector<bool> availableMoves) = 0;
   ~Monster() = default;
+  Monster();
 };
 
 #endif

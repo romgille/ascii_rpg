@@ -1,2 +1,0 @@
-#!/bin/zsh
-cowsay Compiling... | lolcat && for i in *.cc; g++ -ansi -pedantic -Wall -Wextra -std=c++1y $i -c && g++ *.o

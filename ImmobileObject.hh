@@ -2,13 +2,11 @@
 #define IMMOBILEOBJECT_HH
 
 #include "Position.hh"
+#include "Object.hh"
 
-class ImmobileObject {
+class ImmobileObject : public Object {
 
 public:
-  Position position;
-  char symbole = ' ';
-
   ~ImmobileObject() = default;
 };
 

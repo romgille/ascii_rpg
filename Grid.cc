@@ -1,13 +1,14 @@
 #include "Grid.hh"
+#include <algorithm>
 
 Grid::Grid(std::string data[]) {
-  map.resize(data->size());
-  for (size_t i = 0; i < data->size(); ++i){
-    map[i].resize(data->size());
-    for (size_t j = 0; j < data->size(); ++j){
+  map.resize(size);
+  for (size_t i = 0; i < size; ++i){
+    map[i].resize(size);
+    for (size_t j = 0; j < size; ++j){
       switch (data[i][j]) {
         case 'i':
-        fellow = std::make_unique<Fellow>(Position(i, j));
+        fellows.push_back(std::make_unique<Fellow>(Position(i, j)));
         map[i][j] = data[i][j];
         break;
         case 'T':
@@ -45,6 +46,8 @@ Grid::Grid(std::string data[]) {
 }
 
 bool Grid::monstersWin() {
+  if (monsters.size() == 0) return false;
+
   for (size_t i = 0; i < monsters.size(); ++i) {
     if (!monsters[i]->win()){
       return false;
@@ -53,10 +56,21 @@ bool Grid::monstersWin() {
   return true;
 }
 
+bool Grid::fellowsWin() {
+  if (fellows.size() == 0) return false;
+
+  for (size_t i = 0; i < fellows.size(); ++i) {
+    if (!fellows[i]->win()){
+      return false;
+    }
+  }
+  return true;
+}
+
 void Grid::displayMap() {
   std::cout << "\"";
-  for(int i = 0; i < 8; ++i){
-    for(int j = 0; j < 8; ++j){
+  for(size_t i = 0; i < size; ++i){
+    for(size_t j = 0; j < size; ++j){
       std::cout << map[i][j];
     }
     std::cout << "\"," << std::endl;
@@ -65,7 +79,7 @@ void Grid::displayMap() {
   std::cout << std::endl;
 }
 
-std::vector<bool> Grid::availableMoves(MovableObject& movable, char target) {
+std::vector<bool> Grid::availableMoves(MovableObject& movable) {
   bool north = true;
   bool south = true;
   bool east = true;
@@ -75,42 +89,43 @@ std::vector<bool> Grid::availableMoves(MovableObject& movable, char target) {
   bool northW = true;
   bool southW = true;
 
-  // TODO faire avec std::find vector avec vector canWalk et cannotWalk
-  if (map[movable.position.getX() - movable.deplacement][movable.position.getY()] != ' ' ||
-  map[movable.position.getX() - movable.deplacement][movable.position.getY()] != target ||
-  map[movable.position.getX() - movable.deplacement][movable.position.getY()] != '$') {
-    north = false;
+  if (movable.position.getX() - movable.deplacement >= 0) {
+    auto goNorth = std::find(
+      std::begin(movable.cannotWalkOn),
+      std::end(movable.cannotWalkOn),
+      map[movable.position.getX() - movable.deplacement][movable.position.getY()]
+    );
+
+    if (goNorth != std::end(movable.cannotWalkOn)) north = false;
   }
-  if (map[movable.position.getX() + movable.deplacement][movable.position.getY()] != ' ' ||
-  map[movable.position.getX() + movable.deplacement][movable.position.getY()] != target ||
-  map[movable.position.getX() + movable.deplacement][movable.position.getY()] != '$') {
-    south = false;
+
+  if (movable.position.getX() + movable.deplacement < size) {
+    auto goSouth = std::find(
+      std::begin(movable.cannotWalkOn),
+      std::end(movable.cannotWalkOn),
+      map[movable.position.getX() + movable.deplacement][movable.position.getY()]
+    );
+
+    if (goSouth != std::end(movable.cannotWalkOn)) south = false;
   }
-  if (map[movable.position.getX()][movable.position.getY() - movable.deplacement] != ' ' ||
-  map[movable.position.getX()][movable.position.getY() - movable.deplacement] != target ||
-  map[movable.position.getX()][movable.position.getY() - movable.deplacement] != '$') {
-    west = false;
+
+  if (movable.position.getY() + movable.deplacement < size) {
+    auto goEast = std::find(
+      std::begin(movable.cannotWalkOn),
+      std::end(movable.cannotWalkOn),
+      map[movable.position.getX()][movable.position.getY() + movable.deplacement]
+    );
+
+    if (goEast != std::end(movable.cannotWalkOn)) east = false;
   }
-  if (map[movable.position.getX()][movable.position.getY() + movable.deplacement] != ' ' ||
-  map[movable.position.getX()][movable.position.getY() + movable.deplacement] != target ||
-  map[movable.position.getX()][movable.position.getY() + movable.deplacement] != '$') {
-    east = false;
-  }
-  if (map[movable.position.getX() - movable.deplacement][movable.position.getY() - movable.deplacement] != ' ' ||
-  map[movable.position.getX() - movable.deplacement][movable.position.getY() - movable.deplacement] != target) {
-    northW = false;
-  }
-  if (map[movable.position.getX() + movable.deplacement][movable.position.getY() - movable.deplacement] != ' ' ||
-  map[movable.position.getX() + movable.deplacement][movable.position.getY() - movable.deplacement] != target) {
-    southW = false;
-  }
-  if (map[movable.position.getX() + movable.deplacement][movable.position.getY() + movable.deplacement] != ' ' ||
-  map[movable.position.getX() + movable.deplacement][movable.position.getY() + movable.deplacement] != target) {
-    southE = false;
-  }
-  if (map[movable.position.getX() - movable.deplacement][movable.position.getY() + movable.deplacement] != ' ' ||
-  map[movable.position.getX() - movable.deplacement][movable.position.getY() + movable.deplacement] != target) {
-    northE = false;
+  if (movable.position.getY() - movable.deplacement >= 0) {
+    auto goWest = std::find(
+      std::begin(movable.cannotWalkOn),
+      std::end(movable.cannotWalkOn),
+      map[movable.position.getX()][movable.position.getY() - movable.deplacement]
+    );
+
+    if (goWest != std::end(movable.cannotWalkOn)) west = false;
   }
 
   std::vector<bool> availablesMoves = {north, south, east, west, northW, southW, southE, northE};
@@ -121,6 +136,7 @@ void Grid::update() {
   Position potionPosition;
   int potionIndex;
   Position moneyPosition;
+  Position targetPosition;
 
   // remove all elements from map
   for(size_t i = 0; i < map.size(); ++i){
@@ -139,27 +155,56 @@ void Grid::update() {
     if (immobileObjects[i]->symbole == '$') {
       moneyPosition = Position(immobileObjects[i]->position.getX(), immobileObjects[i]->position.getY());
     }
+    if (immobileObjects[i]->symbole == 'T') {
+        targetPosition = Position(immobileObjects[i]->position.getX(), immobileObjects[i]->position.getY());
+    }
+  for (size_t i = 0; i < fellows.size(); ++i){
+    // add fellow to map
+    map[fellows[i]->position.getX()][fellows[i]->position.getY()] = fellows[i]->symbole;
+      for (size_t j = 0; j < monsters.size(); ++j){
+        monsters[i]->targetPosition = Position(fellows[i]->position.getX(), fellows[i]->position.getY());
+      }
+
+    // special cases for fellow
+    if (Position(fellows[i]->position.getX(), fellows[i]->position.getY()) == potionPosition) {
+      fellows[i]->deplacement = 2;
+      immobileObjects.erase(immobileObjects.begin() + potionIndex);
+      hasPotion = false;
+    }
+    if (Position(fellows[i]->position.getX(), fellows[i]->position.getY()) == moneyPosition) {
+      fellows[i]->winner = true;
+    }
   }
+  if (potionPosition.getX() != 0 && potionPosition.getY() != 0) { // TODO
+
+    for (size_t j = 0; j < fellows.size(); ++j){
+      fellows[j]->targetPosition = Position(potionPosition.getX(), potionPosition.getY());
+    }
+  } else {
+    for (size_t j = 0; j < fellows.size(); ++j){
+      fellows[j]->targetPosition = Position(targetPosition.getX(), targetPosition.getY());
+    }
+  }
+}
   // add monsters to map
   for (size_t i = 0; i < monsters.size(); ++i){
     map[monsters[i]->position.getX()][monsters[i]->position.getY()] = monsters[i]->symbole;
   }
-  // add fellow to map
-  map[fellow->position.getX()][fellow->position.getY()] = fellow->symbole;
-  // special cases for fellow
-  if (Position(fellow->position.getX(), fellow->position.getY()) == potionPosition) {
-    fellow->deplacement = 2;
-    immobileObjects.erase(immobileObjects.begin() + potionIndex);
-    hasPotion = false;
-  }
-  if (Position(fellow->position.getX(), fellow->position.getY()) == moneyPosition) {
-    fellow->winner = true;
-  }
+
+
 }
 
 void Grid::moveMonsters() {
   for(size_t i = 0; i < monsters.size(); ++i){
-    std::vector<bool> availableMovesV = availableMoves(*monsters[i], 'i');
+    std::vector<bool> availableMovesV = availableMoves(*monsters[i]);
     monsters[i]->move(availableMovesV);
+  }
+}
+
+void Grid::moveFellows(){
+  for(size_t i = 0; i < fellows.size(); ++i){
+    std::vector<bool> availableMovesV;
+    availableMovesV = availableMoves(*fellows[i]);
+    fellows[i]->move(availableMovesV);
   }
 }
