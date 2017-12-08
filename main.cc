@@ -1,6 +1,16 @@
 #include "main.hh"
 
 int main() {
+
+  system("clear");
+  std::cout << "                         _  __ ________  _  _  __" << '\n';
+  std::cout << "| | _ | _ _ __  _  o__  |_|(_ /   |  |  |_)|_)/__" << '\n';
+  std::cout << "|^|(/_|(_(_)|||(/_ || | | |__)\\___|__|_ | \\|  \\_|" << '\n';
+
+  std::cout << "Press ENTER to go next" << std::endl;
+
+  std::cin.ignore();
+
   std::string data[] = {
     #include "data.txt"
   };
