@@ -11,7 +11,7 @@ Fellow::Fellow(Position p) {
   symbole = 'i';
   deplacement = 1;
   cannotWalkOn = {'m', 'o', 'M'};
-  o.push_back();
+  //objectives.push_back();
   potionTaken = false;
 }
 

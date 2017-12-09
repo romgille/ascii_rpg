@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "Position.hh"
+#include "Objective.hh"
 #include "MovableObject.hh"
 
 class Fellow : public MovableObject {
