@@ -11,6 +11,17 @@ Fellow::Fellow(Position p) {
   symbole = 'i';
   deplacement = 1;
   cannotWalkOn = {'m', 'o', 'M'};
+  o.push_back();
+  potionTaken = false;
+}
+
+Fellow::Fellow(Position p, std::vector<Objective> o) {
+  position = Position(p.getX(), p.getY());
+  symbole = 'i';
+  deplacement = 1;
+  cannotWalkOn = {'m', 'o', 'M'};
+  objectives = o;
+  potionTaken = false;
 }
 
 void Fellow::move(std::vector<bool> availableMoves) {

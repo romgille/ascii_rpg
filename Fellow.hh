@@ -9,7 +9,10 @@
 class Fellow : public MovableObject {
 public:
   Fellow(Position p);
+  Fellow(Position p, std::vector<Objectives> o);
   ~Fellow() = default;
+  std::vector<Objective> objectives;
+  bool potionTaken;
   bool win();
   bool winner = false;
   void move(std::vector<bool> availableMoves);
