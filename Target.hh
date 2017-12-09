@@ -3,7 +3,7 @@
 
 #include <memory>
 
-#include "ImmobileObject.hh"
+#include "Objective.hh"
 #include "Position.hh"
 
 class Target : public Objective {
