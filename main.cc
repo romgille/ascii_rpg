@@ -39,6 +39,7 @@ int main() {
     }
 
     grid->displayMap();
+    std::cout << "Press ENTER to go next" << std::endl;
     std::cin.ignore();
     ++round;
   }
