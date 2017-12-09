@@ -6,7 +6,7 @@
 #include "ImmobileObject.hh"
 #include "Position.hh"
 
-class Target : public ImmobileObject {
+class Target : public Objective {
 
 public:
   Target(Position p);
