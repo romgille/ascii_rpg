@@ -6,7 +6,6 @@
 class Objective : public ImmobileObject {
 
   public:
-    Objective(Position p);
     ~Objective() = default;
 };
 
