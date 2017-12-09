@@ -2,5 +2,4 @@
 
 Objective::Objective(Position p) {
   position = Position(p.getX(), p.getY());
-  symbole = s;
 }
