@@ -127,6 +127,15 @@ std::vector<bool> Grid::availableMoves(MovableObject& movable) {
 
     if (goWest != std::end(movable.cannotWalkOn)) west = false;
   }
+  if (movable.position.getY() - movable.deplacement >= 0) {
+    auto goWest = std::find(
+      std::begin(movable.cannotWalkOn),
+      std::end(movable.cannotWalkOn),
+      map[movable.position.getX()][movable.position.getY() - movable.deplacement]
+    );
+
+    if (goWest != std::end(movable.cannotWalkOn)) west = false;
+  }
 
   std::vector<bool> availablesMoves = {north, south, east, west, northW, southW, southE, northE};
   return availablesMoves;
@@ -166,17 +175,18 @@ void Grid::update() {
       }
 
     // special cases for fellow
-    if (Position(fellows[i]->position.getX(), fellows[i]->position.getY()) == potionPosition) {
+    if (hasPotion && Position(fellows[i]->position.getX(), fellows[i]->position.getY()) == potionPosition) {
       fellows[i]->deplacement = 2;
       immobileObjects.erase(immobileObjects.begin() + potionIndex);
       hasPotion = false;
+      fellows[i]->targetPosition = Position(targetPosition.getX(), targetPosition.getY());
     }
     if (Position(fellows[i]->position.getX(), fellows[i]->position.getY()) == moneyPosition) {
       fellows[i]->winner = true;
     }
   }
-  if (potionPosition.getX() != 0 && potionPosition.getY() != 0) { // TODO
-
+  //if (potionPosition.getX() != 0 && potionPosition.getY() != 0) { // TODO
+  if (hasPotion) {
     for (size_t j = 0; j < fellows.size(); ++j){
       fellows[j]->targetPosition = Position(potionPosition.getX(), potionPosition.getY());
     }

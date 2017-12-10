@@ -1,9 +1,9 @@
 #ifndef POTION_HH
 #define POTION_HH
 
-#include "ImmobileObject.hh"
+#include "Objective.hh"
 
-class Potion : public ImmobileObject {
+class Potion : public Objective {
 public:
   Potion(Position p);
   ~Potion() = default;

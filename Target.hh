@@ -3,10 +3,10 @@
 
 #include <memory>
 
-#include "ImmobileObject.hh"
+#include "Objective.hh"
 #include "Position.hh"
 
-class Target : public ImmobileObject {
+class Target : public Objective {
 
 public:
   Target(Position p);
