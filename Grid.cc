@@ -99,7 +99,8 @@ std::vector<bool> Grid::availableMoves(MovableObject& movable) {
     if (goNorth != std::end(movable.cannotWalkOn)) north = false;
   }
 
-  if (movable.position.getX() + movable.deplacement < size) {
+  size_t nextX = movable.position.getX() + movable.deplacement;
+  if (nextX < size) {
     auto goSouth = std::find(
       std::begin(movable.cannotWalkOn),
       std::end(movable.cannotWalkOn),
@@ -109,7 +110,8 @@ std::vector<bool> Grid::availableMoves(MovableObject& movable) {
     if (goSouth != std::end(movable.cannotWalkOn)) south = false;
   }
 
-  if (movable.position.getY() + movable.deplacement < size) {
+  size_t nextY = movable.position.getY() + movable.deplacement;
+  if (nextY < size) {
     auto goEast = std::find(
       std::begin(movable.cannotWalkOn),
       std::end(movable.cannotWalkOn),
